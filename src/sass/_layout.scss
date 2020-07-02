@@ -1,0 +1,12 @@
+/* header */
+.header__container {
+   display: flex;
+   align-items: center;
+}
+.header__icon {
+   width: 60px;
+}
+.header__title {
+   margin-left: 5px;
+   color: $black;
+}
