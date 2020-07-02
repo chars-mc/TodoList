@@ -4,16 +4,24 @@
    margin: 0 auto;
 }
 
+.button {
+   width: 100%;
+   padding: 15px;
+   font-weight: bold;
+   color: white;
+   background-color: $green;
+   border: none;
+   outline: none;
+   letter-spacing: 1px;
+   cursor: pointer;
+   margin: 10px 0;
+}
+button:disabled {
+   opacity: .5;
+   cursor: not-allowed;
+}
 
-.green {
-   color: $green;
-}
-.blue {
-   color: $blue;
-}
-.yellow {
-   color: $yellow;
-}
-.red {
-   color: $red;
-}
+.green { color: $green; }
+.blue { color: $blue; }
+.yellow { color: $yellow; }
+.red { color: $red; }

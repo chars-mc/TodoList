@@ -1,0 +1,46 @@
+/* inputs */
+.input__text,
+.input__date,
+.input__datetime {
+   padding: 10px;
+   width: 100%;
+   margin-bottom: 10px;
+   background-color: $white;
+   border: 1px solid #3c3c3c38;
+   outline: none;
+}
+input[name=taskColor] {
+   outline: none;
+   display: none;
+}
+
+/* color buttons */
+.task__color {
+   margin-left: 8px;
+   height: 2.3em;
+   width: 2.3em;
+   border-radius: 50%;
+   background-color: currentColor;
+   opacity: .5;
+   transition: opacity .2s;
+   cursor: pointer;
+}
+
+input[name=taskColor]:checked + .task__color {
+   opacity: 1;
+}
+
+/* radio buttons container */
+.form-columns {
+   display: grid;
+   
+   grid-template-columns: repeat(5, 1fr);
+}
+
+.input__datetime {
+   grid-column: span 4;
+}
+.task__colors {
+   display: flex;
+   justify-content: space-between;
+}

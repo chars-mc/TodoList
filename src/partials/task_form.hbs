@@ -1,0 +1,20 @@
+<form class="form" id="taskForm">
+   <input type="text" id="taskName" class="input__text" placeholder="Type your task here">
+   
+   <div class="form-columns">
+      <input type="datetime-local" id="taskDate" class="input__datetime" min="">
+
+      <div class="task__colors">
+         <input type="radio" name="taskColor" value="green" id="green" checked>
+         <label for="green" class="task__color green"></label>
+
+         <input type="radio" name="taskColor" value="yellow" id="yellow">
+         <label for="yellow" class="task__color yellow"></label>
+
+         <input type="radio" name="taskColor" value="red" id="red">
+         <label for="red" class="task__color red"></label>
+      </div>
+   </div>
+
+   <button class="button">SAVE TASK</button>
+</form>
