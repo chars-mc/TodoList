@@ -1,8 +1,8 @@
 <form class="form" id="taskForm">
-   <input type="text" id="taskName" class="input__text" placeholder="Type your task here">
+   <input type="text" name="taskTitle" id="taskName" class="input__text" placeholder="Type your task here">
    
    <div class="form-columns">
-      <input type="datetime-local" id="taskDate" class="input__datetime" min="">
+      <input type="datetime-local" name="taskDate" id="taskDate" class="input__datetime">
 
       <div class="task__colors">
          <input type="radio" name="taskColor" value="green" id="green" checked>
@@ -16,5 +16,5 @@
       </div>
    </div>
 
-   <button class="button">SAVE TASK</button>
+   <button class="button" id="saveTask">SAVE TASK</button>
 </form>
