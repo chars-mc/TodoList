@@ -4,12 +4,22 @@ import './static/icon.png';
 import { UI } from './js/UI';
 import { Task } from './js/Task';
 
-
+let tasks = [];
 const ui = new UI();
 
 window.addEventListener('load', () => {
    document.getElementById('taskForm').addEventListener('submit', e => saveTask(e));
 
+   tasks = ui.getTasks();  // get tasks from localstorage
+   arrayTaskIsEmpty();
+
+   const fragment = document.createDocumentFragment();
+   tasks.forEach(task => {
+      fragment.appendChild(getTaskTemplate(task));
+   });
+
+   document.getElementById('tasks').innerHTML = '';
+   document.getElementById('tasks').appendChild(fragment);
 });
 
 function saveTask(e) {
@@ -23,5 +33,36 @@ function saveTask(e) {
    const newTask = new Task(id, title, color, date.toLocaleString());
 
    ui.saveTask(newTask);
+   tasks.push(newTask);
+
    e.target.reset();
+   
+   arrayTaskIsEmpty();
+   document.getElementById('tasks').appendChild(getTaskTemplate(newTask));
+}
+
+function getTaskTemplate(task) {
+   const div = document.createElement('div');
+   div.classList = 'task';
+
+   div.innerHTML += `
+      <span class="${task.color}"></span>
+      <div class="task-content">
+         <p class="task-content__date">${task.date}</p>
+         <h4 class="task-content__title">${task.task}</h4>
+      </div>
+
+      <button class="task__delete-button">x</button>`;
+
+   return div;
+}
+
+function arrayTaskIsEmpty() {
+   const titleContainer = document.getElementById('tasks-container__title');
+
+   if(tasks.length === 0) {
+      titleContainer.innerText = 'You don´t have tasks yet';
+   } else {
+      titleContainer.innerText = 'Your tasks';
+   }
 }
