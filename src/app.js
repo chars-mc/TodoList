@@ -3,6 +3,7 @@ import './static/icon.png';
 
 import { UI } from './js/UI';
 import { Task } from './js/Task';
+import { Validation } from './js/Validation';
 
 let tasks = [];
 const ui = new UI();
@@ -32,6 +33,12 @@ function saveTask(e) {
 
    const newTask = new Task(id, title, color, date.toLocaleString());
 
+   const errors = validateTask(newTask);
+
+   if(errors.length > 0) {
+      return printErrors(errors);
+   }
+   
    ui.saveTask(newTask);
    tasks.push(newTask);
 
@@ -79,4 +86,32 @@ function deleteTask(id, taskElement) {
    ui.removeTask(id);
 
    arrayTaskIsEmpty();
+}
+
+function validateTask(task) {
+   const validation = new Validation();
+   let errors = [];
+
+   if(validation.checkEmptyString(task.task)) errors.push('Enter a valid task');
+   if(!validation.checkLength(task.task, 3)) errors.push('The task is very short');
+   if(!validation.checkDate(new Date(task.date), new Date())) errors.push('The date must be greater than now');
+
+   return errors;
+}
+
+function printErrors(errors) {
+   const fragment = document.createDocumentFragment();
+   errors.forEach(error => {
+      const paragraph = document.createElement('p');
+      paragraph.innerHTML += ` - ${error}`;
+      fragment.appendChild(paragraph);
+   });
+   
+   document.getElementById('errors').innerText = '';
+   document.getElementById('errors').appendChild(fragment);
+   document.getElementById('errors').classList.add('show');
+   
+   setTimeout(() => {
+      document.getElementById('errors').classList.remove('show');
+   }, errors.length * 1800);
 }

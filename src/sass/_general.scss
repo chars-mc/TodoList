@@ -54,6 +54,23 @@ button:disabled {
    color: rgb(248, 59, 59);
 }
 
+.errors {
+   width: 90%;
+   background-color: rgba(253, 81, 81, 0.986);
+   color: $white;
+   padding: 10px;
+   border-radius: 3px;
+   display: none;
+   position: fixed;
+   top: 10px;
+   left: 50%;
+   transform: translateX(-50%);
+}
+
+.show {
+   display: block;
+}
+
 .green { color: $green; }
 .blue { color: $blue; }
 .yellow { color: $yellow; }
