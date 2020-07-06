@@ -21,4 +21,7 @@ export class UI {
 
       return tasks;
    }
+   removeTask(id) {
+      localStorage.removeItem(id);
+   }
 }
