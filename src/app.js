@@ -19,7 +19,6 @@ window.addEventListener('load', () => {
       fragment.appendChild(getTaskTemplate(task));
    });
 
-   document.getElementById('tasks').innerHTML = '';
    document.getElementById('tasks').appendChild(fragment);
 });
 
@@ -32,19 +31,16 @@ function saveTask(e) {
    const id = `${date.getTime()}_${title.charCodeAt(1)}_${color.charCodeAt(1)}_${Math.random()}`;
 
    const newTask = new Task(id, title, color, date.toLocaleString());
-
    const errors = validateTask(newTask);
 
-   if(errors.length > 0) {
-      return printErrors(errors);
-   }
+   if(errors.length > 0) return printErrors(errors);
    
    ui.saveTask(newTask);
    tasks.push(newTask);
 
    e.target.reset();
-   
    arrayTaskIsEmpty();
+
    document.getElementById('tasks').appendChild(getTaskTemplate(newTask));
 }
 
@@ -54,18 +50,19 @@ function getTaskTemplate(task) {
    
    div.innerHTML += `
       <span class="task__color ${task.color}">
-         <input type="checkbox" class="task__check taskDone" ${task.completed? 'checked':''}>
+         <input type="checkbox" class="task__check task__done" ${task.completed? 'checked':''}>
       </span>
 
       <div class="task-content">
-      <p class="task-content__date">${task.date}</p>
+         <p class="task-content__date">${task.date}</p>
          <h4 class="task-content__title ${task.completed? 'done':''}">${task.title}</h4>
       </div>
 
       <button class="task__delete-button">x</button>`;
 
    div.querySelector('.task__delete-button').addEventListener('click', () => deleteTask(task.id, div));
-   div.querySelector('.taskDone').addEventListener('click', (e) => {
+   
+   div.querySelector('.task__done').addEventListener('click', (e) => {
       div.querySelector('.task-content__title').classList.toggle('done');
       e.target.checked? task.completed = true : task.completed = false;
       completeTask(task);
@@ -77,22 +74,16 @@ function getTaskTemplate(task) {
 function arrayTaskIsEmpty() {
    const titleContainer = document.getElementById('tasks-container__title');
 
-   if(tasks.length === 0) {
-      titleContainer.innerText = 'You don´t have tasks yet';
-   } else {
-      titleContainer.innerText = 'Your tasks';
-   }
+   if(tasks.length === 0) titleContainer.innerText = 'You don´t have tasks yet';
+      else titleContainer.innerText = 'Your tasks';
 }
 
 function deleteTask(id, taskElement) {
-   const taskID = tasks.findIndex((task) => {
-      return task.id === id;
-   })
+   const taskID = tasks.findIndex((task) => task.id === id)
 
    tasks.splice(taskID, 1)
    taskElement.parentElement.removeChild(taskElement);
    ui.removeTask(id);
-
    arrayTaskIsEmpty();
 }
 
@@ -109,18 +100,20 @@ function validateTask(task) {
 
 function printErrors(errors) {
    const fragment = document.createDocumentFragment();
+   const errorsContainer = document.getElementById('errors');
+
    errors.forEach(error => {
       const paragraph = document.createElement('p');
       paragraph.innerHTML += ` - ${error}`;
       fragment.appendChild(paragraph);
    });
    
-   document.getElementById('errors').innerText = '';
-   document.getElementById('errors').appendChild(fragment);
-   document.getElementById('errors').classList.add('show');
+   errorsContainer.innerText = '';
+   errorsContainer.appendChild(fragment);
+   errorsContainer.classList.add('show');
    
    setTimeout(() => {
-      document.getElementById('errors').classList.remove('show');
+      errorsContainer.classList.remove('show');
    }, errors.length * 1800);
 }
 
