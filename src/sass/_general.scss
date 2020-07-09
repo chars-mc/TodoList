@@ -1,7 +1,8 @@
 .container {
    width: 90%;
    max-width: 1280px;
-   margin: 0 auto;
+   margin-right: auto;
+   margin-left: auto;
 }
 
 .button {
@@ -14,29 +15,25 @@
    outline: none;
    letter-spacing: 1px;
    cursor: pointer;
-   margin: 10px 0;
-}
-button:disabled {
-   opacity: .5;
-   cursor: not-allowed;
 }
 
 // task
-.tasks-container__title { margin: 25px 0; }
 .task {
    display: grid;
-   grid-template-columns: repeat(1, 2em 1fr 2.5em);
+   grid-template-columns: repeat(1, 2em 1fr 2em);
    align-items: center;
    column-gap: 10px;
-   margin-bottom: 20px;
+   padding: 5px;
+   margin-bottom: 5px;
+   border: 1px solid rgba(0, 0, 0, 0.068);
 }
-.tasks span {
+.task__color {
    height: 2em;
    width: 2em;
    background-color: currentColor;
    border-radius: 50%;
 }
-.tasks span input {
+.task__check {
    height: 100%;
    display: block;
    margin: auto;
@@ -47,10 +44,12 @@ button:disabled {
 }
 .task-content__date {
    font-size: .8em;
+   margin: 0;
 }
 .task-content__title {
    font-size: 1em;
    font-weight: 500;
+   margin: 0;
 }
 .task__delete-button {
    border: none;
@@ -65,8 +64,10 @@ button:disabled {
 
 .errors {
    width: 90%;
+   max-width: 350px;
    background-color: rgba(253, 81, 81, 0.986);
    color: $white;
+   font-size: .8em;
    padding: 10px;
    border-radius: 3px;
    display: none;

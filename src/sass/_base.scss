@@ -1,8 +1,4 @@
-* {
-   box-sizing: border-box;
-   margin: 0;
-   padding: 0;
-}
+* { box-sizing: border-box; }
 
 html {
    height: 100%;
@@ -12,4 +8,11 @@ body {
    min-height: 100%;
    background-color: $white;
    font-family: $fontFamily;
+}
+
+h1, h2, h3 {
+   margin: 10px;
+}
+p {
+   margin: 3px;
 }

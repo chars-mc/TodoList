@@ -7,6 +7,26 @@
    width: 60px;
 }
 .header__title {
-   margin-left: 5px;
    color: $black;
+}
+
+.tasks-container {
+   overflow-y: auto;
+   margin-top: 10px;
+   max-height: calc(100vh - 38vh);
+}
+
+@media screen and(min-width: 780px) {
+   .main .container {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: 350px 1fr;
+   }
+   .tasks-container {
+      max-height: calc(100vh - 15vh);
+   }
+   h3 {
+      margin: 0;
+      margin-bottom: 5px;
+   }
 }

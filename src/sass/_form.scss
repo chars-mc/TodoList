@@ -1,7 +1,7 @@
 /* inputs */
-.input__text,
-.input__date,
-.input__datetime {
+.input-text,
+.input-date,
+.input-datetime {
    padding: 10px;
    width: 100%;
    margin-bottom: 10px;
@@ -15,7 +15,7 @@ input[name=taskColor] {
 }
 
 /* color buttons */
-.task__color {
+.task-color {
    margin-left: 8px;
    height: 2.3em;
    width: 2.3em;
@@ -26,7 +26,7 @@ input[name=taskColor] {
    cursor: pointer;
 }
 
-input[name=taskColor]:checked + .task__color {
+input[name=taskColor]:checked + .task-color {
    opacity: 1;
 }
 
@@ -37,10 +37,10 @@ input[name=taskColor]:checked + .task__color {
    grid-template-columns: repeat(5, 1fr);
 }
 
-.input__datetime {
+.input-datetime {
    grid-column: span 4;
 }
-.task__colors {
+.task-colors {
    display: flex;
    justify-content: space-between;
 }

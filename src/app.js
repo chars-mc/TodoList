@@ -53,13 +53,13 @@ function getTaskTemplate(task) {
    div.classList = 'task';
    
    div.innerHTML += `
-      <span class="${task.color}">
-         <input type="checkbox" class="taskDone" ${task.completed? 'checked':''}>
+      <span class="task__color ${task.color}">
+         <input type="checkbox" class="task__check taskDone" ${task.completed? 'checked':''}>
       </span>
 
       <div class="task-content">
       <p class="task-content__date">${task.date}</p>
-         <h4 class="task-content__title ${task.completed? 'done':''}">${task.task}</h4>
+         <h4 class="task-content__title ${task.completed? 'done':''}">${task.title}</h4>
       </div>
 
       <button class="task__delete-button">x</button>`;
@@ -100,8 +100,8 @@ function validateTask(task) {
    const validation = new Validation();
    let errors = [];
 
-   if(validation.checkEmptyString(task.task)) errors.push('Enter a valid task');
-   if(!validation.checkLength(task.task, 3)) errors.push('The task is very short');
+   if(validation.checkEmptyString(task.title)) errors.push('Enter a valid task');
+   if(!validation.checkLength(task.title, 3)) errors.push('The task is very short');
    if(!validation.checkDate(new Date(task.date), new Date())) errors.push('The date must be greater than now');
 
    return errors;
@@ -127,6 +127,5 @@ function printErrors(errors) {
 function completeTask(taskUpdate) {
    const id = tasks.indexOf(task => task.id === taskUpdate.id);
    tasks[id] = taskUpdate;
-   console.log(tasks);
    ui.completeTask(taskUpdate);
 }
