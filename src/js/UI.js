@@ -24,4 +24,8 @@ export class UI {
    removeTask(id) {
       localStorage.removeItem(id);
    }
+
+   completeTask(task) {
+      localStorage.setItem(task.id, JSON.stringify(task));
+   }
 }

@@ -36,6 +36,15 @@ button:disabled {
    background-color: currentColor;
    border-radius: 50%;
 }
+.tasks span input {
+   height: 100%;
+   display: block;
+   margin: auto;
+}
+.done {
+   opacity: .5;
+   text-decoration: line-through;
+}
 .task-content__date {
    font-size: .8em;
 }

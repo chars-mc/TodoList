@@ -4,5 +4,6 @@ export class Task {
       this.task = task;
       this.color = color;
       this.date = date;
+      this.completed = false
    }
 }

@@ -53,15 +53,23 @@ function getTaskTemplate(task) {
    div.classList = 'task';
    
    div.innerHTML += `
-   <span class="${task.color}"></span>
+      <span class="${task.color}">
+         <input type="checkbox" class="taskDone" ${task.completed? 'checked':''}>
+      </span>
+
       <div class="task-content">
       <p class="task-content__date">${task.date}</p>
-         <h4 class="task-content__title">${task.task}</h4>
+         <h4 class="task-content__title ${task.completed? 'done':''}">${task.task}</h4>
       </div>
 
       <button class="task__delete-button">x</button>`;
 
    div.querySelector('.task__delete-button').addEventListener('click', () => deleteTask(task.id, div));
+   div.querySelector('.taskDone').addEventListener('click', (e) => {
+      div.querySelector('.task-content__title').classList.toggle('done');
+      e.target.checked? task.completed = true : task.completed = false;
+      completeTask(task);
+   });
    
    return div;
 }
@@ -114,4 +122,11 @@ function printErrors(errors) {
    setTimeout(() => {
       document.getElementById('errors').classList.remove('show');
    }, errors.length * 1800);
+}
+
+function completeTask(taskUpdate) {
+   const id = tasks.indexOf(task => task.id === taskUpdate.id);
+   tasks[id] = taskUpdate;
+   console.log(tasks);
+   ui.completeTask(taskUpdate);
 }
